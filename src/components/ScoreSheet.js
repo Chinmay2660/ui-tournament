@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ScoreTable from "./ScoreTable";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 function ScoreSheet() {
   const [showTable, setShowTable] = useState(false);
@@ -30,15 +30,6 @@ function ScoreSheet() {
     });
   };
 
-  // const handlePlayerNameChange = (e, index, team) => {
-  //   const updatedPlayers = [...formData[`${team}Players`]];
-  //   updatedPlayers[index] = e.target.value;
-  //   setFormData({
-  //     ...formData,
-  //     [`${team}Players`]: updatedPlayers,
-  //   });
-  // };
-
   const handleAddClick = () => {
     if (formData.team1 && formData.team2) {
       setShowTable(true);
@@ -50,11 +41,11 @@ function ScoreSheet() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Submit button clicked");
     try {
       const response = await axios.post("/api/scores", formData);
-      console.log("Data sent to server:", formData); 
-      console.log("Server response:", response.data); 
-      // handleView();
+      console.log("Data sent to server:", formData);
+      console.log("Server response:", response.data);
     } catch (error) {
       console.error("Error sending data to server:", error);
     }
@@ -65,13 +56,13 @@ function ScoreSheet() {
   };
 
   return (
-    <div className="score-sheet">
+    <div className="score-sheet" style={{ marginTop: "20px" }}>
       <Box sx={{ width: "100%", maxWidth: 500, margin: "0 auto" }}>
-        <Typography variant="h4" gutterBottom align="center">
+        <Typography variant="h5" gutterBottom align="center">
           Score Sheet
         </Typography>
       </Box>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <TextField
             id="team1"
@@ -81,6 +72,7 @@ function ScoreSheet() {
             value={formData.team1}
             onChange={handleInputChange}
             required
+            style={{ marginRight: "20px" }}
           />
           <TextField
             id="team2"
@@ -90,6 +82,7 @@ function ScoreSheet() {
             value={formData.team2}
             onChange={handleInputChange}
             required
+            style={{ marginRight: "20px" }}
           />
           <Button variant="contained" onClick={handleAddClick}>
             Add
@@ -97,13 +90,19 @@ function ScoreSheet() {
         </div>
       </form>
       {showTable && formData.team1 && formData.team2 && (
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "30px",
+          }}
+        >
           <ScoreTable formData={formData} />
         </div>
       )}
       {showSubmitViewButtons && formData.team1 && formData.team2 && (
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button variant="contained" type="submit">
+        <div style={{ display: "flex", justifyContent: "flex-end", marginRight: "270px", marginTop:"20px" }}>
+          <Button variant="contained" type="submit" onClick={handleSubmit} style={{ marginRight:"20px" }}>
             Submit
           </Button>
           <Button variant="contained" onClick={handleView}>

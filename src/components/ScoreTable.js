@@ -11,8 +11,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
 function ScoreTable({ formData }) {
-  const [matchSelects, setMatchSelects] = useState(["", "", "", "", ""]);
-  const [gameSelects, setGameSelects] = useState(["", "", "", "", ""]);
+  const [matchSelects, setMatchSelects] = useState(["Match 1", "Match 2", "Match 3", "Match 4", "Match 5"]);
+  const [gameSelects, setGameSelects] = useState(["Singles", "Singles", "Singles", "Singles", "Singles"]);
   const [team1Players, setTeam1Players] = useState([
     ["", ""],
     ["", ""],
@@ -27,6 +27,7 @@ function ScoreTable({ formData }) {
     ["", ""],
     ["", ""],
   ]);
+
   const [winnerSelects, setWinnerSelects] = useState(["", "", "", "", ""]);
 
   const handleChangeMatch = (event, index) => {
@@ -61,7 +62,7 @@ function ScoreTable({ formData }) {
   const rows = [0, 1, 2, 3, 4];
 
   return (
-    <div className="score-table" style={{ height: "400px", overflowY: "auto" }}>
+    <div className="score-table" style={{ height: "550px", overflowY: "auto" }}>
       <TableContainer component={Paper} style={{ height: "100%" }}>
         <Table size="small" aria-label="customized table">
           <TableHead>
@@ -94,7 +95,7 @@ function ScoreTable({ formData }) {
                   textAlign: "center",
                 }}
               >
-                Team 1: {formData.team1}
+                Team 1 - {formData.team1}
               </TableCell>
               <TableCell
                 size="small"
@@ -104,7 +105,7 @@ function ScoreTable({ formData }) {
                   textAlign: "center",
                 }}
               >
-                Team 2: {formData.team2}
+                Team 2 - {formData.team2}
               </TableCell>
               <TableCell
                 size="small"
@@ -120,7 +121,7 @@ function ScoreTable({ formData }) {
           </TableHead>
           <TableBody>
             {rows.map((index) => (
-              <TableRow key={index}>
+              <TableRow key={index} style={{ height: "100px"}}>
                 <TableCell size="small">
                   <Select
                     size="small"
@@ -128,14 +129,11 @@ function ScoreTable({ formData }) {
                     onChange={(event) => handleChangeMatch(event, index)}
                     style={{ minWidth: "120px", width: "120px" }}
                   >
-                    <MenuItem value="" disabled>
-                      Select
-                    </MenuItem>
-                    <MenuItem value="Singles">Match 1</MenuItem>
-                    <MenuItem value="Doubles">Match 2</MenuItem>
-                    <MenuItem value="Doubles">Match 3</MenuItem>
-                    <MenuItem value="Doubles">Match 4</MenuItem>
-                    <MenuItem value="Doubles">Match 5</MenuItem>
+                    <MenuItem value="Match 1">Match 1</MenuItem>
+                    <MenuItem value="Match 2">Match 2</MenuItem>
+                    <MenuItem value="Match 3">Match 3</MenuItem>
+                    <MenuItem value="Match 4">Match 4</MenuItem>
+                    <MenuItem value="Match 5">Match 5</MenuItem>
                   </Select>
                 </TableCell>
                 <TableCell size="small">
@@ -163,7 +161,7 @@ function ScoreTable({ formData }) {
                         onChange={(event) =>
                           handleChangePlayerName(event, 0, index, "team1")
                         }
-                        style={{ width: "200px" }}
+                        style={{ width: "200px", marginBottom: "5px" }}
                       />
                       <TextField
                         size="small"
@@ -200,7 +198,7 @@ function ScoreTable({ formData }) {
                         onChange={(event) =>
                           handleChangePlayerName(event, 0, index, "team2")
                         }
-                        style={{ width: "200px" }}
+                        style={{ width: "200px", marginBottom: "5px" }}
                       />
                       <TextField
                         size="small"
