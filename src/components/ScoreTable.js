@@ -68,31 +68,51 @@ function ScoreTable({ formData }) {
             <TableRow>
               <TableCell
                 size="small"
-                style={{ minWidth: "120px", width: "120px" }}
+                style={{
+                  minWidth: "120px",
+                  width: "120px",
+                  textAlign: "center",
+                }}
               >
                 Match
               </TableCell>
               <TableCell
                 size="small"
-                style={{ minWidth: "120px", width: "120px" }}
+                style={{
+                  minWidth: "120px",
+                  width: "120px",
+                  textAlign: "center",
+                }}
               >
                 Game
               </TableCell>
               <TableCell
                 size="small"
-                style={{ minWidth: "160px", width: "160px" }}
+                style={{
+                  minWidth: "160px",
+                  width: "160px",
+                  textAlign: "center",
+                }}
               >
                 Team 1: {formData.team1}
               </TableCell>
               <TableCell
                 size="small"
-                style={{ minWidth: "160px", width: "160px" }}
+                style={{
+                  minWidth: "160px",
+                  width: "160px",
+                  textAlign: "center",
+                }}
               >
                 Team 2: {formData.team2}
               </TableCell>
               <TableCell
                 size="small"
-                style={{ minWidth: "120px", width: "120px" }}
+                style={{
+                  minWidth: "120px",
+                  width: "120px",
+                  textAlign: "center",
+                }}
               >
                 Winner
               </TableCell>
@@ -106,22 +126,16 @@ function ScoreTable({ formData }) {
                     size="small"
                     value={matchSelects[index]}
                     onChange={(event) => handleChangeMatch(event, index)}
-                    fullWidth
+                    style={{ minWidth: "120px", width: "120px" }}
                   >
                     <MenuItem value="" disabled>
                       Select
                     </MenuItem>
-                    {[
-                      "Match 1",
-                      "Match 2",
-                      "Match 3",
-                      "Match 4",
-                      "Match 5",
-                    ].map((matchOption) => (
-                      <MenuItem key={matchOption} value={matchOption}>
-                        {matchOption}
-                      </MenuItem>
-                    ))}
+                    <MenuItem value="Singles">Match 1</MenuItem>
+                    <MenuItem value="Doubles">Match 2</MenuItem>
+                    <MenuItem value="Doubles">Match 3</MenuItem>
+                    <MenuItem value="Doubles">Match 4</MenuItem>
+                    <MenuItem value="Doubles">Match 5</MenuItem>
                   </Select>
                 </TableCell>
                 <TableCell size="small">
@@ -129,7 +143,7 @@ function ScoreTable({ formData }) {
                     size="small"
                     value={gameSelects[index]}
                     onChange={(event) => handleChangeGame(event, index)}
-                    fullWidth
+                    style={{ minWidth: "120px", width: "120px" }}
                   >
                     <MenuItem value="" disabled>
                       Select
@@ -149,7 +163,6 @@ function ScoreTable({ formData }) {
                         onChange={(event) =>
                           handleChangePlayerName(event, 0, index, "team1")
                         }
-                        fullWidth
                         style={{ width: "200px" }}
                       />
                       <TextField
@@ -160,7 +173,6 @@ function ScoreTable({ formData }) {
                         onChange={(event) =>
                           handleChangePlayerName(event, 1, index, "team1")
                         }
-                        fullWidth
                         style={{ width: "200px" }}
                       />
                     </div>
@@ -173,7 +185,6 @@ function ScoreTable({ formData }) {
                       onChange={(event) =>
                         handleChangePlayerName(event, 0, index, "team1")
                       }
-                      fullWidth
                       style={{ width: "200px" }}
                     />
                   )}
@@ -189,7 +200,6 @@ function ScoreTable({ formData }) {
                         onChange={(event) =>
                           handleChangePlayerName(event, 0, index, "team2")
                         }
-                        fullWidth
                         style={{ width: "200px" }}
                       />
                       <TextField
@@ -200,7 +210,6 @@ function ScoreTable({ formData }) {
                         onChange={(event) =>
                           handleChangePlayerName(event, 1, index, "team2")
                         }
-                        fullWidth
                         style={{ width: "200px" }}
                       />
                     </div>
@@ -213,7 +222,6 @@ function ScoreTable({ formData }) {
                       onChange={(event) =>
                         handleChangePlayerName(event, 0, index, "team2")
                       }
-                      fullWidth
                       style={{ width: "200px" }}
                     />
                   )}
@@ -223,7 +231,7 @@ function ScoreTable({ formData }) {
                     size="small"
                     value={winnerSelects[index]}
                     onChange={(event) => handleChangeWinner(event, index)}
-                    fullWidth
+                    style={{ minWidth: "120px", width: "180px" }}
                   >
                     <MenuItem value="" disabled>
                       Select

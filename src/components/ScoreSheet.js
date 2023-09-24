@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ScoreTable from "./ScoreTable";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; 
 
 function ScoreSheet() {
   const [showTable, setShowTable] = useState(false);
@@ -19,6 +20,8 @@ function ScoreSheet() {
     winner: "",
   });
 
+  const navigate = useNavigate();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -27,21 +30,21 @@ function ScoreSheet() {
     });
   };
 
-  const handlePlayerNameChange = (e, index, team) => {
-    const updatedPlayers = [...formData[`${team}Players`]];
-    updatedPlayers[index] = e.target.value;
-    setFormData({
-      ...formData,
-      [`${team}Players`]: updatedPlayers,
-    });
-  };
+  // const handlePlayerNameChange = (e, index, team) => {
+  //   const updatedPlayers = [...formData[`${team}Players`]];
+  //   updatedPlayers[index] = e.target.value;
+  //   setFormData({
+  //     ...formData,
+  //     [`${team}Players`]: updatedPlayers,
+  //   });
+  // };
 
   const handleAddClick = () => {
     if (formData.team1 && formData.team2) {
       setShowTable(true);
       setShowSubmitViewButtons(true);
     } else {
-      console.error("Both Team 1 and Team 2 names are required.");
+      alert("Both Team 1 and Team 2 names are required");
     }
   };
 
@@ -49,14 +52,16 @@ function ScoreSheet() {
     e.preventDefault();
     try {
       const response = await axios.post("/api/scores", formData);
-      console.log("Data sent to server:", response.data);
+      console.log("Data sent to server:", formData); 
+      console.log("Server response:", response.data); 
+      // handleView();
     } catch (error) {
       console.error("Error sending data to server:", error);
     }
   };
 
   const handleView = () => {
-    // Add code here to navigate to the "View" page
+    navigate("/view");
   };
 
   return (

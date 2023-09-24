@@ -6,19 +6,17 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 
 const ViewPage = () => {
-  const [winner, setWinner] = useState(""); // State to store winner
-  const [matchData, setMatchData] = useState([]); // State to store match data
+  const [winner, setWinner] = useState(""); 
+  const [matchData, setMatchData] = useState([]);
 
   useEffect(() => {
-    handleView(); // Fetch data when the component mounts
-  }, []); // Empty dependency array to run the effect only once
+    handleView(); 
+  }, []); 
 
   const handleView = async () => {
     try {
       const response = await axios.get("/api/scores");
       const data = response.data;
-
-      // Assuming the response data includes a 'winner' and 'matches' field
       setWinner(data.winner);
       setMatchData(data.matches);
     } catch (error) {
