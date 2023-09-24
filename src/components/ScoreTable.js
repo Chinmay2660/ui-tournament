@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -63,24 +61,39 @@ function ScoreTable({ formData }) {
   const rows = [0, 1, 2, 3, 4];
 
   return (
-    <div className="score-table">
-      <TableContainer component={Paper}>
+    <div className="score-table" style={{ height: "400px", overflowY: "auto" }}>
+      <TableContainer component={Paper} style={{ height: "100%" }}>
         <Table size="small" aria-label="customized table">
           <TableHead>
             <TableRow>
-              <TableCell size="small" style={{ minWidth: "120px" }}>
+              <TableCell
+                size="small"
+                style={{ minWidth: "120px", width: "120px" }}
+              >
                 Match
               </TableCell>
-              <TableCell size="small" style={{ minWidth: "120px" }}>
+              <TableCell
+                size="small"
+                style={{ minWidth: "120px", width: "120px" }}
+              >
                 Game
               </TableCell>
-              <TableCell size="small" style={{ minWidth: "80px" }}>
+              <TableCell
+                size="small"
+                style={{ minWidth: "160px", width: "160px" }}
+              >
                 Team 1: {formData.team1}
               </TableCell>
-              <TableCell size="small" style={{ minWidth: "80px" }}>
+              <TableCell
+                size="small"
+                style={{ minWidth: "160px", width: "160px" }}
+              >
                 Team 2: {formData.team2}
               </TableCell>
-              <TableCell size="small" style={{ minWidth: "120px" }}>
+              <TableCell
+                size="small"
+                style={{ minWidth: "120px", width: "120px" }}
+              >
                 Winner
               </TableCell>
             </TableRow>
@@ -137,6 +150,7 @@ function ScoreTable({ formData }) {
                           handleChangePlayerName(event, 0, index, "team1")
                         }
                         fullWidth
+                        style={{ width: "200px" }}
                       />
                       <TextField
                         size="small"
@@ -147,6 +161,7 @@ function ScoreTable({ formData }) {
                           handleChangePlayerName(event, 1, index, "team1")
                         }
                         fullWidth
+                        style={{ width: "200px" }}
                       />
                     </div>
                   ) : (
@@ -159,6 +174,7 @@ function ScoreTable({ formData }) {
                         handleChangePlayerName(event, 0, index, "team1")
                       }
                       fullWidth
+                      style={{ width: "200px" }}
                     />
                   )}
                 </TableCell>
@@ -174,6 +190,7 @@ function ScoreTable({ formData }) {
                           handleChangePlayerName(event, 0, index, "team2")
                         }
                         fullWidth
+                        style={{ width: "200px" }}
                       />
                       <TextField
                         size="small"
@@ -184,6 +201,7 @@ function ScoreTable({ formData }) {
                           handleChangePlayerName(event, 1, index, "team2")
                         }
                         fullWidth
+                        style={{ width: "200px" }}
                       />
                     </div>
                   ) : (
@@ -196,6 +214,7 @@ function ScoreTable({ formData }) {
                         handleChangePlayerName(event, 0, index, "team2")
                       }
                       fullWidth
+                      style={{ width: "200px" }}
                     />
                   )}
                 </TableCell>
