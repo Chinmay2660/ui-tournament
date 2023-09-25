@@ -61,10 +61,10 @@ function ScoreSheet() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Data submitted:", tableData);
+    console.log("Data:", tableData);
     try {
-      const response = await axios.post("/api/scores", { ...formData, ...tableData });
-      console.log("Data sent to server:", formData);
+      const response = await axios.post("http://localhost:5000/", { ...formData, ...tableData });
+      console.log("Data being sent to server:", { ...formData, ...tableData });
       console.log("Server response:", response.data);
     } catch (error) {
       console.error("Error sending data to server:", error);

@@ -20,16 +20,29 @@ const ViewPage = () => {
 
   const handleView = async () => {
     try {
-      const response = await axios.get("/api/scores");
+      const response = await axios.get("http://localhost:5000/");
       const data = response.data;
-      setWinner(data.winner);
+      const winnerCount = { Team1: 0, Team2: 0 }; // Count winners
+      data.matches.forEach((match) => {
+        if (match.winner === data.team1) {
+          winnerCount.Team1++;
+        } else if (match.winner === data.team2) {
+          winnerCount.Team2++;
+        }
+      });
+      // Determine the overall winner
+      if (winnerCount.Team1 > winnerCount.Team2) {
+        setWinner(data.team1);
+      } else if (winnerCount.Team1 < winnerCount.Team2) {
+        setWinner(data.team2);
+      } else {
+        setWinner("It's a Tie"); // Handle a tie if needed
+      }
       setMatchData(data.matches);
     } catch (error) {
       console.error("Error fetching data from server:", error);
     }
   };
-
-  const displayedMatchData = matchData.slice(0, 5);
 
   return (
     <div className="view-page">
@@ -39,32 +52,32 @@ const ViewPage = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          marginTop:"30px",
+          marginTop: "30px",
         }}
       >
         <Typography variant="h6" gutterBottom>
           Winner: {winner}
         </Typography>
-          <TableContainer  component={Paper} style={{ height: "100%", marginTop:"30px"}} >
-            <Table size="small" aria-label="customized table">
-              <TableHead >
-                <TableRow >
-                  <TableCell style={{ textAlign: "center"}}>Match</TableCell>
-                  <TableCell style={{ textAlign: "center"}}>Game</TableCell>
-                  <TableCell style={{ textAlign: "center"}}>Winner</TableCell>
+        <TableContainer component={Paper} style={{ height: "100%", marginTop: "30px" }}>
+          <Table size="small" aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <TableCell style={{ textAlign: "center" }}>Match</TableCell>
+                <TableCell style={{ textAlign: "center" }}>Game</TableCell>
+                <TableCell style={{ textAlign: "center" }}>Winner</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {matchData.map((match, index) => (
+                <TableRow key={index}>
+                  <TableCell>{match.match}</TableCell>
+                  <TableCell>{match.game}</TableCell>
+                  <TableCell>{match.winner}</TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {displayedMatchData.map((match, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{match.match}</TableCell>
-                    <TableCell>{match.game}</TableCell>
-                    <TableCell>{match.winner}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Box>
     </div>
   );
