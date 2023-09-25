@@ -62,8 +62,6 @@ function ScoreSheet() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Data submitted:", tableData);
-
-    // Your axios request and other logic here
     try {
       const response = await axios.post("/api/scores", { ...formData, ...tableData });
       console.log("Data sent to server:", formData);
