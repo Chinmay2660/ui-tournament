@@ -3,16 +3,24 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-// import Button from "@mui/material/Button";
-// import { Link } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate(-1); 
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-      <ArrowBackIosNewIcon  style={{ display: "flex", justifyContent: "center" }}/>
         <Toolbar>
+          <IconButton color="inherit" onClick={handleBackClick}>
+            <ArrowBackIosNewIcon />
+          </IconButton>
           <Typography
             variant="h6"
             component="div"
@@ -20,12 +28,6 @@ export default function Header() {
           >
             RCP TABLE TENNIS TOURNAMENT - MONSOON MASTI 2023
           </Typography>
-          {/* <Link to="/" style={{ textDecoration: "none" }}>
-            <Button color="inherit">Home</Button>
-          </Link>
-          <Link to="/view" style={{ textDecoration: "none" }}>
-            <Button color="inherit">View</Button>
-          </Link> */}
         </Toolbar>
       </AppBar>
     </Box>
