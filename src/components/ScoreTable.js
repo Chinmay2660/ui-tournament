@@ -144,7 +144,11 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                         onChange={(event) =>
                           handleChangePlayerName(event, 0, index, "team1")
                         }
-                        style={{ width: "200px", marginBottom: "5px" }}
+                        style={{
+                          width: "200px",
+                          marginBottom: "10px",
+                          marginTop: "5px",
+                        }}
                       />
                       <TextField
                         size="small"
@@ -181,7 +185,11 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                         onChange={(event) =>
                           handleChangePlayerName(event, 0, index, "team2")
                         }
-                        style={{ width: "200px", marginBottom: "5px" }}
+                        style={{
+                          width: "200px",
+                          marginBottom: "10px",
+                          marginTop: "5px",
+                        }}
                       />
                       <TextField
                         size="small"
