@@ -20,7 +20,7 @@ const ViewPage = () => {
 
   const handleView = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/"); 
+      const response = await axios.get("http://localhost:5000/");
       const data = response.data;
       setMatchData(data.matches);
     } catch (error) {
@@ -54,9 +54,21 @@ const ViewPage = () => {
             <TableBody>
               {matchData.map((match, index) => (
                 <TableRow key={index}>
-                  <TableCell>{match.match}</TableCell>
-                  <TableCell>{match.game}</TableCell>
-                  <TableCell>{match.winner}</TableCell>
+                  <TableCell style={{ textAlign: "center" }}>
+                    {match.matchSelects.map((matchSelect, i) => (
+                      <div key={i}>{matchSelect}</div>
+                    ))}
+                  </TableCell>
+                  <TableCell style={{ textAlign: "center" }}>
+                    {match.gameSelects.map((gameSelect, i) => (
+                      <div key={i}>{gameSelect}</div>
+                    ))}
+                  </TableCell>
+                  <TableCell style={{ textAlign: "center" }}>
+                    {match.winnerSelects.map((winnerSelect, i) => (
+                      <div key={i}>{winnerSelect}</div>
+                    ))}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
