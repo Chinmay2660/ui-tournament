@@ -13,11 +13,27 @@ function ScoreSheet() {
   const [formData, setFormData] = useState({
     team1: "",
     team2: "",
-    match: "",
-    game: "",
-    team1Players: ["", "", "", "", ""],
-    team2Players: ["", "", "", "", ""],
-    winner: "",
+    matches: [],
+  });
+
+  const [tableData, setTableData] = useState({
+    matchSelects: ["Match 1", "Match 2", "Match 3", "Match 4", "Match 5"],
+    gameSelects: ["Singles", "Singles", "Singles", "Singles", "Singles"],
+    team1Players: [
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+    ],
+    team2Players: [
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+      ["", ""],
+    ],
+    winnerSelects: ["", "", "", "", ""],
   });
 
   const navigate = useNavigate();
@@ -28,6 +44,10 @@ function ScoreSheet() {
       ...formData,
       [name]: value,
     });
+  };
+
+  const updateTableData = (newData) => {
+    setTableData(newData);
   };
 
   const handleAddClick = () => {
@@ -41,9 +61,11 @@ function ScoreSheet() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submit button clicked");
+    console.log("Data submitted:", tableData);
+
+    // Your axios request and other logic here
     try {
-      const response = await axios.post("/api/scores", formData);
+      const response = await axios.post("/api/scores", { ...formData, ...tableData });
       console.log("Data sent to server:", formData);
       console.log("Server response:", response.data);
     } catch (error) {
@@ -97,12 +119,19 @@ function ScoreSheet() {
             marginTop: "30px",
           }}
         >
-          <ScoreTable formData={formData} />
+          <ScoreTable formData={formData} tableData={tableData} updateTableData={updateTableData} />
         </div>
       )}
       {showSubmitViewButtons && formData.team1 && formData.team2 && (
-        <div style={{ display: "flex", justifyContent: "flex-end", marginRight: "270px", marginTop:"20px" }}>
-          <Button variant="contained" type="submit" onClick={handleSubmit} style={{ marginRight:"20px" }}>
+        <div
+          style={{ display: "flex", justifyContent: "end", marginTop: "30px", marginBottom: "30px", marginRight: "150px" }}
+        >
+          <Button
+            variant="contained"
+            type="submit"
+            onClick={handleSubmit}
+            style={{ marginRight: "20px" }}
+          >
             Submit
           </Button>
           <Button variant="contained" onClick={handleView}>
