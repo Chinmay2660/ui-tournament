@@ -13,7 +13,6 @@ function ScoreSheet() {
   const [formData, setFormData] = useState({
     team1: "",
     team2: "",
-    matches: [],
   });
 
   const [tableData, setTableData] = useState({

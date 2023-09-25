@@ -20,24 +20,8 @@ const ViewPage = () => {
 
   const handleView = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/");
+      const response = await axios.get("http://localhost:5000/"); 
       const data = response.data;
-      const winnerCount = { Team1: 0, Team2: 0 }; // Count winners
-      data.matches.forEach((match) => {
-        if (match.winner === data.team1) {
-          winnerCount.Team1++;
-        } else if (match.winner === data.team2) {
-          winnerCount.Team2++;
-        }
-      });
-      // Determine the overall winner
-      if (winnerCount.Team1 > winnerCount.Team2) {
-        setWinner(data.team1);
-      } else if (winnerCount.Team1 < winnerCount.Team2) {
-        setWinner(data.team2);
-      } else {
-        setWinner("It's a Tie"); // Handle a tie if needed
-      }
       setMatchData(data.matches);
     } catch (error) {
       console.error("Error fetching data from server:", error);
