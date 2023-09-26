@@ -26,19 +26,17 @@ const ViewPage = () => {
       const data = response.data;
 
       data.matches[0].matches.forEach((e) => {
-        if (e.winnerSelects.split(" ")[1] === "1") { 
+        if (e.winnerSelects.split(" ")[1] === "1") {
           team1Count += 1;
         } else {
           team2Count += 1;
         }
       });
-  // // console.log(arr, "arr");
       if (team1Count > team2Count) {
-        setWinner("Team 1");
+        setWinner("Team 1 - " + data.matches[0].team1);
       } else {
-        setWinner("Team 2");
+        setWinner("Team 2 - " + data.matches[0].team2);
       }
-      // // console.log(data.matches[0].winnerSelects);
 
       setMatchData(data.matches[0].matches);
     } catch (error) {
@@ -58,7 +56,7 @@ const ViewPage = () => {
         }}
       >
         <Typography variant="h5" gutterBottom>
-          Winner: {winner}
+          Winner : {winner}
         </Typography>
         <TableContainer
           component={Paper}
