@@ -45,7 +45,7 @@ function ScoreTable({ formData, tableData, updateTableData }) {
   const rows = [0, 1, 2, 3, 4];
 
   return (
-    <div className="score-table" style={{ height: "550px", overflowY: "auto" }}>
+    <div className="score-table" style={{ height: "600px", overflowY: "auto" }}>
       <TableContainer component={Paper} style={{ height: "100%" }}>
         <Table size="small" aria-label="customized table">
           <TableHead>
@@ -104,7 +104,7 @@ function ScoreTable({ formData, tableData, updateTableData }) {
           </TableHead>
           <TableBody>
             {rows.map((index) => (
-              <TableRow key={index} style={{ height: "100px" }}>
+              <TableRow key={index} style={{ height: "110px" }}>
                 <TableCell size="small">
                   <Select
                     size="small"

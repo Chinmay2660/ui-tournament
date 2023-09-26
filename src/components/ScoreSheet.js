@@ -62,8 +62,8 @@ function ScoreSheet() {
     console.log("Data:", tableData);
     try {
       const response = await axios.post("http://localhost:5000/", { ...formData, ...tableData });
-      // console.log("Data being sent to server:", { ...formData, ...tableData });
-      // console.log("Server response:", response.data);
+      console.log("Data being sent to server:", { ...formData, ...tableData });
+      console.log("Server response:", response.data);
     } catch (error) {
       console.error("Error sending data to server:", error);
     }

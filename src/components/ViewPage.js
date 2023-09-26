@@ -9,10 +9,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ViewPage = () => {
   const [winner, setWinner] = useState("");
   const [matchData, setMatchData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleView();
@@ -26,6 +28,12 @@ const ViewPage = () => {
     } catch (error) {
       console.error("Error fetching data from server:", error);
     }
+  };
+
+  const handleBackClick = () => {
+    setWinner("");
+    setMatchData([]);
+    navigate(-1);
   };
 
   return (
@@ -74,6 +82,7 @@ const ViewPage = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        <button onClick={handleBackClick}>Go Back</button>
       </Box>
     </div>
   );
