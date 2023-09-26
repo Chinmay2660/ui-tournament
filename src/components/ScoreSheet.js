@@ -14,7 +14,6 @@ function ScoreSheet() {
     team1: "",
     team2: "",
   });
-
   const [tableData, setTableData] = useState({
     matchSelects: ["Match 1", "Match 2", "Match 3", "Match 4", "Match 5"],
     gameSelects: ["Singles", "Singles", "Singles", "Singles", "Singles"],
