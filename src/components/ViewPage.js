@@ -9,12 +9,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const ViewPage = () => {
-  const [winner, setWinner] = useState("");
+  const [winner, setWinner] = useState("Team 1");
   const [matchData, setMatchData] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     handleView();
@@ -23,17 +21,13 @@ const ViewPage = () => {
   const handleView = async () => {
     try {
       const response = await axios.get("http://localhost:5000/");
+      // setMatchData([]);
       const data = response.data;
+      // console.log(data,"get data")
       setMatchData(data.matches);
     } catch (error) {
       console.error("Error fetching data from server:", error);
     }
-  };
-
-  const handleBackClick = () => {
-    setWinner("");
-    setMatchData([]);
-    navigate(-1);
   };
 
   return (
@@ -60,7 +54,7 @@ const ViewPage = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {matchData.map((match, index) => (
+              {matchData.length > 0  && matchData.map((match, index) => (
                 <TableRow key={index}>
                   <TableCell style={{ textAlign: "center" }}>
                     {match.matchSelects.map((matchSelect, i) => (
@@ -82,7 +76,6 @@ const ViewPage = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <button onClick={handleBackClick}>Go Back</button>
       </Box>
     </div>
   );

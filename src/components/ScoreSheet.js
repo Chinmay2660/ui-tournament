@@ -49,10 +49,16 @@ function ScoreSheet() {
     setTableData(newData);
   };
 
-  const handleAddClick = () => {
+  const handleAddClick = async () => {
     if (formData.team1 && formData.team2) {
       setShowTable(true);
       setShowSubmitViewButtons(true);
+      try {
+        await axios.delete("http://localhost:5000/clearData");
+        console.log("Data in MongoDB cleared successfully");
+      } catch (error) {
+        console.error("Error clearing data in MongoDB:", error);
+      }
     } else {
       alert("Both Team 1 and Team 2 names are required");
     }
