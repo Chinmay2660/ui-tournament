@@ -15,24 +15,45 @@ function ScoreSheet() {
     team2: "",
   });
   const [tableData, setTableData] = useState({
-    matchSelects: ["Match 1", "Match 2", "Match 3", "Match 4", "Match 5"],
-    gameSelects: ["Singles", "Singles", "Singles", "Singles", "Singles"],
-    team1Players: [
-      ["", ""],
-      ["", ""],
-      ["", ""],
-      ["", ""],
-      ["", ""],
+    matches: [
+      {
+        matchSelects: "Match 1",
+        gameSelects: "Singles",
+        team1Players: ["", ""],
+        team2Players: ["", ""],
+        winnerSelects: "",
+      },
+      {
+        matchSelects: "Match 2",
+        gameSelects: "Singles",
+        team1Players: ["", ""],
+        team2Players: ["", ""],
+        winnerSelects: "",
+      },
+      {
+        matchSelects: "Match 3",
+        gameSelects: "Singles",
+        team1Players: ["", ""],
+        team2Players: ["", ""],
+        winnerSelects: "",
+      },
+      {
+        matchSelects: "Match 4",
+        gameSelects: "Singles",
+        team1Players: ["", ""],
+        team2Players: ["", ""],
+        winnerSelects: "",
+      },
+      {
+        matchSelects: "Match 5",
+        gameSelects: "Singles",
+        team1Players: ["", ""],
+        team2Players: ["", ""],
+        winnerSelects: "",
+      },
     ],
-    team2Players: [
-      ["", ""],
-      ["", ""],
-      ["", ""],
-      ["", ""],
-      ["", ""],
-    ],
-    winnerSelects: ["", "", "", "", ""],
   });
+
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const navigate = useNavigate();
@@ -46,7 +67,7 @@ function ScoreSheet() {
   };
 
   const updateTableData = (newData) => {
-    setTableData(newData);
+    setTableData({ ...tableData, matches: newData });
   };
 
   const handleAddClick = async () => {
@@ -69,9 +90,11 @@ function ScoreSheet() {
     try {
       const response = await axios.post("http://localhost:5000/api/postData", {
         ...formData,
-        ...tableData,
+        matches: tableData.matches,
       });
-      console.log("Data being sent to server:", { ...formData, ...tableData });
+      console.log("Data being sent to server:", {
+        matches: tableData.matches, ...formData
+      });
       console.log("Server response:", response.data);
       setFormSubmitted(true);
     } catch (error) {
@@ -127,7 +150,7 @@ function ScoreSheet() {
         >
           <ScoreTable
             formData={formData}
-            tableData={tableData}
+            tableData={tableData.matches}
             updateTableData={updateTableData}
           />
         </div>

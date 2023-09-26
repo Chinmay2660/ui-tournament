@@ -12,37 +12,32 @@ import Select from "@mui/material/Select";
 
 function ScoreTable({ formData, tableData, updateTableData }) {
   const handleChangeMatch = (event, index) => {
-    const updatedMatchSelects = [...tableData.matchSelects];
-    updatedMatchSelects[index] = event.target.value;
-    updateTableData({ ...tableData, matchSelects: updatedMatchSelects });
+    const updatedMatches = [...tableData];
+    updatedMatches[index].matchSelects = event.target.value;
+    updateTableData(updatedMatches);
   };
 
   const handleChangeGame = (event, index) => {
-    const updatedGameSelects = [...tableData.gameSelects];
-    updatedGameSelects[index] = event.target.value;
-    updateTableData({ ...tableData, gameSelects: updatedGameSelects });
+    const updatedMatches = [...tableData];
+    updatedMatches[index].gameSelects = event.target.value;
+    updateTableData(updatedMatches);
   };
 
   const handleChangePlayerName = (event, playerIndex, index, team) => {
-    const updatedTeam1Players = [...tableData.team1Players];
-    const updatedTeam2Players = [...tableData.team2Players];
-
+    const updatedMatches = [...tableData];
     if (team === "team1") {
-      updatedTeam1Players[index][playerIndex] = event.target.value;
-      updateTableData({ ...tableData, team1Players: updatedTeam1Players });
+      updatedMatches[index].team1Players[playerIndex] = event.target.value;
     } else {
-      updatedTeam2Players[index][playerIndex] = event.target.value;
-      updateTableData({ ...tableData, team2Players: updatedTeam2Players });
+      updatedMatches[index].team2Players[playerIndex] = event.target.value;
     }
+    updateTableData(updatedMatches);
   };
 
   const handleChangeWinner = (event, index) => {
-    const updatedWinnerSelects = [...tableData.winnerSelects];
-    updatedWinnerSelects[index] = event.target.value;
-    updateTableData({ ...tableData, winnerSelects: updatedWinnerSelects });
+    const updatedMatches = [...tableData];
+    updatedMatches[index].winnerSelects = event.target.value;
+    updateTableData(updatedMatches);
   };
-
-  const rows = [0, 1, 2, 3, 4];
 
   return (
     <div className="score-table" style={{ height: "600px", overflowY: "auto" }}>
@@ -103,12 +98,12 @@ function ScoreTable({ formData, tableData, updateTableData }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((index) => (
+            {tableData.map((match, index) => (
               <TableRow key={index} style={{ height: "110px" }}>
                 <TableCell size="small">
                   <Select
                     size="small"
-                    value={tableData.matchSelects[index]}
+                    value={match.matchSelects}
                     onChange={(event) => handleChangeMatch(event, index)}
                     style={{ minWidth: "120px", width: "120px" }}
                   >
@@ -122,7 +117,7 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                 <TableCell size="small">
                   <Select
                     size="small"
-                    value={tableData.gameSelects[index]}
+                    value={match.gameSelects}
                     onChange={(event) => handleChangeGame(event, index)}
                     style={{ minWidth: "120px", width: "120px" }}
                   >
@@ -134,13 +129,13 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                   </Select>
                 </TableCell>
                 <TableCell size="small">
-                  {tableData.gameSelects[index] === "Doubles" ? (
+                  {match.gameSelects === "Doubles" ? (
                     <div>
                       <TextField
                         size="small"
                         label="Player Name 1"
                         variant="outlined"
-                        value={tableData.team1Players[index][0]}
+                        value={match.team1Players[0]}
                         onChange={(event) =>
                           handleChangePlayerName(event, 0, index, "team1")
                         }
@@ -154,7 +149,7 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                         size="small"
                         label="Player Name 2"
                         variant="outlined"
-                        value={tableData.team1Players[index][1]}
+                        value={match.team1Players[1]}
                         onChange={(event) =>
                           handleChangePlayerName(event, 1, index, "team1")
                         }
@@ -166,7 +161,7 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                       size="small"
                       label="Player Name"
                       variant="outlined"
-                      value={tableData.team1Players[index][0]}
+                      value={match.team1Players[0]}
                       onChange={(event) =>
                         handleChangePlayerName(event, 0, index, "team1")
                       }
@@ -175,13 +170,13 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                   )}
                 </TableCell>
                 <TableCell size="small">
-                  {tableData.gameSelects[index] === "Doubles" ? (
+                  {match.gameSelects === "Doubles" ? (
                     <div>
                       <TextField
                         size="small"
                         label="Player Name 1"
                         variant="outlined"
-                        value={tableData.team2Players[index][0]}
+                        value={match.team2Players[0]}
                         onChange={(event) =>
                           handleChangePlayerName(event, 0, index, "team2")
                         }
@@ -195,7 +190,7 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                         size="small"
                         label="Player Name 2"
                         variant="outlined"
-                        value={tableData.team2Players[index][1]}
+                        value={match.team2Players[1]}
                         onChange={(event) =>
                           handleChangePlayerName(event, 1, index, "team2")
                         }
@@ -207,7 +202,7 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                       size="small"
                       label="Player Name"
                       variant="outlined"
-                      value={tableData.team2Players[index][0]}
+                      value={match.team2Players[0]}
                       onChange={(event) =>
                         handleChangePlayerName(event, 0, index, "team2")
                       }
@@ -218,7 +213,7 @@ function ScoreTable({ formData, tableData, updateTableData }) {
                 <TableCell size="small">
                   <Select
                     size="small"
-                    value={tableData.winnerSelects[index]}
+                    value={match.winnerSelects}
                     onChange={(event) => handleChangeWinner(event, index)}
                     style={{ minWidth: "120px", width: "180px" }}
                   >
