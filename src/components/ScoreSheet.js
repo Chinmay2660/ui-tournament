@@ -34,6 +34,7 @@ function ScoreSheet() {
     ],
     winnerSelects: ["", "", "", "", ""],
   });
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const navigate = useNavigate();
 
@@ -54,7 +55,7 @@ function ScoreSheet() {
       setShowTable(true);
       setShowSubmitViewButtons(true);
       try {
-        await axios.delete("http://localhost:5000/clearData");
+        await axios.delete("http://localhost:5000/api/clearData");
         console.log("Data in MongoDB cleared successfully");
       } catch (error) {
         console.error("Error clearing data in MongoDB:", error);
@@ -67,9 +68,13 @@ function ScoreSheet() {
   const handleSubmit = async () => {
     console.log("Data:", tableData);
     try {
-      const response = await axios.post("http://localhost:5000/", { ...formData, ...tableData });
+      const response = await axios.post("http://localhost:5000/api/postData", {
+        ...formData,
+        ...tableData,
+      });
       console.log("Data being sent to server:", { ...formData, ...tableData });
       console.log("Server response:", response.data);
+      setFormSubmitted(true);
     } catch (error) {
       console.error("Error sending data to server:", error);
     }
@@ -121,18 +126,29 @@ function ScoreSheet() {
             marginTop: "30px",
           }}
         >
-          <ScoreTable formData={formData} tableData={tableData} updateTableData={updateTableData} />
+          <ScoreTable
+            formData={formData}
+            tableData={tableData}
+            updateTableData={updateTableData}
+          />
         </div>
       )}
       {showSubmitViewButtons && formData.team1 && formData.team2 && (
         <div
-          style={{ display: "flex", justifyContent: "end", marginTop: "30px", marginBottom: "30px", marginRight: "150px" }}
+          style={{
+            display: "flex",
+            justifyContent: "end",
+            marginTop: "30px",
+            marginBottom: "30px",
+            marginRight: "150px",
+          }}
         >
           <Button
             variant="contained"
             type="submit"
             onClick={handleSubmit}
             style={{ marginRight: "20px" }}
+            disabled={formSubmitted}
           >
             Submit
           </Button>

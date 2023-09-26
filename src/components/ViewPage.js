@@ -20,7 +20,7 @@ const ViewPage = () => {
 
   const handleView = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/");
+      const response = await axios.get("http://localhost:5000/api/getData");
       // setMatchData([]);
       const data = response.data;
       // console.log(data,"get data")
@@ -38,41 +38,72 @@ const ViewPage = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: "30px",
+          marginTop: "20px",
         }}
       >
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           Winner: {winner}
         </Typography>
-        <TableContainer component={Paper} style={{ height: "100%", marginTop: "30px" }}>
+        <TableContainer
+          component={Paper}
+          style={{ height: "100%", marginTop: "30px" }}
+        >
           <Table size="small" aria-label="customized table">
             <TableHead>
               <TableRow>
-                <TableCell style={{ textAlign: "center" }}>Match</TableCell>
-                <TableCell style={{ textAlign: "center" }}>Game</TableCell>
-                <TableCell style={{ textAlign: "center" }}>Winner</TableCell>
+                <TableCell
+                  size="small"
+                  style={{
+                    minWidth: "120px",
+                    width: "120px",
+                    textAlign: "center",
+                  }}
+                >
+                  Match
+                </TableCell>
+                <TableCell
+                  size="small"
+                  style={{
+                    minWidth: "120px",
+                    width: "120px",
+                    textAlign: "center",
+                  }}
+                >
+                  Game
+                </TableCell>
+                <TableCell
+                  size="small"
+                  style={{
+                    minWidth: "120px",
+                    width: "120px",
+                    textAlign: "center",
+                  }}
+                >
+                  Winner
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {matchData.length > 0  && matchData.map((match, index) => (
-                <TableRow key={index}>
-                  <TableCell style={{ textAlign: "center" }}>
-                    {match.matchSelects.map((matchSelect, i) => (
-                      <div key={i}>{matchSelect}</div>
-                    ))}
-                  </TableCell>
-                  <TableCell style={{ textAlign: "center" }}>
-                    {match.gameSelects.map((gameSelect, i) => (
-                      <div key={i}>{gameSelect}</div>
-                    ))}
-                  </TableCell>
-                  <TableCell style={{ textAlign: "center" }}>
-                    {match.winnerSelects.map((winnerSelect, i) => (
-                      <div key={i}>{winnerSelect}</div>
-                    ))}
-                  </TableCell>
-                </TableRow>
-              ))}
+              {matchData.length > 0 &&
+                matchData.map((match, index) => (
+                  <TableRow key={index}>
+                    <TableCell style={{ textAlign: "center" }}>
+                      {match.matchSelects.map((matchSelect, i) => (
+                        <div key={i}>{matchSelect}</div>
+                      ))}
+                    </TableCell>
+                    <TableCell style={{ textAlign: "center" }}>
+                      {match.gameSelects.map((gameSelect, i) => (
+                        <div key={i}>{gameSelect}</div>
+                      ))}
+                    </TableCell>
+                    <TableCell style={{ textAlign: "center" }}>
+                      {match.winnerSelects.map((winnerSelect, i) => (
+                        <div key={i}>{winnerSelect}</div>
+                      ))}
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
