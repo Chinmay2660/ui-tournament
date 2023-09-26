@@ -21,26 +21,23 @@ const ViewPage = () => {
   const handleView = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/getData");
-      // let team1Count = 0;
-      // let team2Count = 0;
+      let team1Count = 0;
+      let team2Count = 0;
       const data = response.data;
 
-      // console.log(data.matches[0].winnerSelects[0].split(" ")[1], "get data");
-      // let arr = data.matches[0].winnerSelects.map((e) => {
-      //   if (e.split(" ")[1] === "1") {
-      //     team1Count += 1;
-      //     // console.log(e, "if");
-      //   } else {
-      //     team2Count += 1;
-      //     // console.log(e, "else");
-      //   }
-      // });
-      // // console.log(arr, "arr");
-      // if (team1Count > team2Count) {
-      //   setWinner("Team 1");
-      // } else {
-      //   setWinner("Team 2");
-      // }
+      data.matches[0].matches.forEach((e) => {
+        if (e.winnerSelects.split(" ")[1] === "1") { 
+          team1Count += 1;
+        } else {
+          team2Count += 1;
+        }
+      });
+  // // console.log(arr, "arr");
+      if (team1Count > team2Count) {
+        setWinner("Team 1");
+      } else {
+        setWinner("Team 2");
+      }
       // // console.log(data.matches[0].winnerSelects);
 
       setMatchData(data.matches[0].matches);
