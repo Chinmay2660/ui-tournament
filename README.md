@@ -6,7 +6,7 @@ Tournament is a web application that allows users to organize and track tourname
 
 - [Features](#features)
 - [Usage](#usage)
-- [Contribution](#contribution)
+- [Contributing](#contributing)
 
 ## Features
 
