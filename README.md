@@ -28,7 +28,7 @@ Tournament is a web application that allows users to organize and track tourname
 1. Open the application in your web browser.
 2. On the home page, enter details for each match using the provided form (team names, match number, game type, player names, winner's team).
 3. Click "Submit" to save the match details.
-4. Navigate to the "View Matches" page to see a list of entered matches with match numbers and winner's team names.
+4. Navigate to the "View" page to see a list of entered matches with match numbers and winner team names.
 5. Track the overall winners on the "Overall Winners" page.
 
 ## Getting Started
