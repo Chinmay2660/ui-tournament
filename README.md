@@ -1,6 +1,6 @@
-# UI Tournament
+# Tournament
 
-UI Tournament is a web application that allows users to organize and track tournaments. Users can enter details for each match, including team names, match number, game type (single or double), player names, and the winner's team name. The application then provides a convenient way to view entered match details and overall winners.
+Tournament is a web application that allows users to organize and track tournaments. Users can enter details for each match, including team names, match number, game type (single or double), player names, and the winner's team name. The application then provides a convenient way to view entered match details and overall winners.
 
 ## Table of Contents
 
