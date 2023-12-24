@@ -19,7 +19,7 @@ Tournament is a web application that allows users to organize and track tourname
 
 2. **View entered match details:**
    - Match number
-   - Winner's team name
+   - Winner team name
 
 3. **Track overall winners of the tournament.**
 
@@ -48,20 +48,6 @@ To get started with UI Tournament, follow these steps:
 4. **Open your browser and visit:**
    ```bash
    http://localhost:3000
-
-## Features
-
-1. Enter details for each match, including team names, match number, game type, player names, and winner's team name.
-2. View entered match details, including match number and winner team name.
-3. Track overall winners of the tournament.
-
-## Usage
-
-1. Open the application in your web browser.
-2. On the home page, enter details for each match using the provided form (team names, match number, game type, player names, winner's team).
-3. Click "Submit" to save the match details.
-4. Navigate to the "View" page to see a list of entered matches with match numbers and winner's team names.
-5. Track the overall winners on the "Overall Winners" page.
 
 ## Contributing
 If you would like to contribute to UI Tournament, please follow our contribution guidelines.
